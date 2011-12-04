@@ -1,0 +1,13 @@
+*.o
+*.zip
+BlackBeltSorviHero.exe
+BlackBeltSorviHero.bin
+BlackBeltSorviHero.dat
+*.deb
+bin/
+gen/
+libs/
+obj/
+stdout.txt
+stderr.txt
+version.cc

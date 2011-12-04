@@ -1,0 +1,135 @@
+Black Belt Sorvi Hero
+by Pizzalaatikko
+for Windows, Linux and Nokia N900.
+Can be also ported to Android with small effort.
+
+Copyright 2011 Janne Kulmala <janne.t.kulmala@iki.fi>,
+Antti Rajamäki <amikaze@gmail.com>
+
+Winner of the game development competition at Assembly summer 2011.
+
+Program code and resources are licensed with GNU LGPL 2.1. See 
+COPYING.LGPL file.
+
+
+Description
+-----------
+Are you able to handle the difficulties of turning? Your job is to carve 
+a given shape out of wood with a chisel. The better you match the shape 
+and more accure job you do, the better score you will get. With earned 
+score you can buy new faster and stronger chisels. Watch out for going 
+too fast, as you might overheat your chisel or break the wood!
+
+You can try to beat the high scores of other users on Internet by 
+playing through all the levels!
+
+
+Credits
+-------
+Janne 'Japeq' Kulmala - Code, graphics, models
+Antti 'Amikaze' Rajamäki - Models, graphics, sounds
+
+
+Required programs and libraries
+-------------------------------
+The following programs and libraries are required to compile the game:
+- GCC C++ compiler
+- SDL 1.2
+- SDL_ttf 2.0
+- GLEW >= 1.5
+- libvorbis
+- libpng
+- OpenGL
+
+Installing the required packages on Fedora (as root):
+  $ yum install gcc-c++ SDL-devel SDL_ttf-devel glew-devel libpng-devel \
+    libvorbis-devel mesa-libGL-devel mesa-libGLU-devel
+
+Installing the required packages on Ubuntu (as root):
+  $ apt-get install g++ libsdl1.2-dev libglew-dev libsdl-ttf2.0-dev \
+    libpng-dev libvorbis-dev libgl1-mesa-dev libglu1-mesa-dev
+
+
+Compiling
+---------
+Compiling on Linux:
+  $ rm *.o
+  $ make
+
+Will result in BlackBeltSorviHero.bin that can be executed.
+
+
+High scores
+-----------
+The high scores on the server are accessed with HTTP. The actual highscore 
+list is stored as a text file, called 'BlackBeltSorviHero/highscores.txt'. 
+The game submits new highscores to the server by doing a HTTP POST request 
+to 'BlackBeltSorviHero/submit.php'. The game fetches the highscore list by 
+fetching the text file with a HTTP GET. The host name of the highscore 
+server is defined by HIGHSCORE_SERVER in 'menus.cc'.
+
+The validity of the highscore submissions is verified by a signature. 
+The signature is sent in the POST request and includes the player's 
+name, the score and a secret key. The server checks that it can produce 
+the same signature as the game binary, and thus the game and the server 
+should agree on the secret key. The secret key is stored in 
+HIGHSCORE_SECRET_KEY in 'menu.cc' and 'submit.php'.
+
+
+Cross compiling for Windows on Fedora
+-------------------------------------
+You will need mingw installed on your system. Mingw can be installed with:
+  $ yum install mingw32-gcc-c++ mingw32-SDL mingw32-freetype mingw32-libpng \
+    mingw32-libvorbis
+
+Mingw packages for GLEW and SDL_ttf are not available on Fedora, and 
+have to be compiled and installed separately.
+
+GLEW can be installed as follows:
+  1. Download and extract glew-1.6.0.tgz
+  2. Compile with:
+     $ make SYSTEM=mingw CC=i686-pc-mingw32-gcc LD=i686-pc-mingw32-gcc
+  3. Install by executing as root:
+     $ cp lib/libglew32.a /usr/i686-pc-mingw32/lib/
+     $ cp include/GL/*.h /usr/i686-pc-mingw32/include/GL/
+
+SDL_ttf can be installed as follows:
+  1. Mingw "freetype-config" is broken and can be fixed by executing as root:
+     $ sed -i -e 's/pkg-config/i686-pc-mingw32-pkg-config/g' \
+       /usr/i686-pc-mingw32/sys-root/mingw/bin/freetype-config
+  2. Download and extract SDL_ttf-2.0.10.tar.gz
+  3. Compile with:
+     $ ./configure --host=i686-pc-mingw32 \
+       --with-freetype-prefix=/usr/i686-pc-mingw32/sys-root/mingw/
+     $ make
+  4. Install by executing as root:
+     $ cp SDL_ttf.h /usr/i686-pc-mingw32/sys-root/mingw/include/
+     $ cp libSDL_ttf.a /usr/i686-pc-mingw32/sys-root/mingw/lib/
+
+To compile, execute the following:
+  $ rm *.o
+  $ make -f Makefile.mingw
+
+To build a distributable zip package that includes the Linux and Windows 
+versions, run the following. Both binaries must be built before hand and 
+the required .dll files must be copied to the source directory.
+  $ make release
+
+
+Cross compiling to Nokia N900
+-----------------------------
+The game can be compiled to N900 inside Scratchbox environment. The game 
+requires development files to compile. The files can be installed inside 
+Scratchbox with:
+  $ apt-get install libsdl1.2-dev libglew-dev libsdl-ttf2.0-dev \
+    libpng-dev libvorbis-dev
+
+To compile, execute the following inside Scratchbox:
+  $ rm *.o
+  $ make -f Makefile.n900
+
+Installable Debian package can be created with:
+  $ make -f Makefile.n900 release
+
+
+END

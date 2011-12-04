@@ -1,0 +1,14 @@
+Package: BlackBeltSorviHero
+Version: {VERSION}-1
+Section: user/extras
+Priority: extra
+Architecture: armel
+Depends: libvorbisfile3, libsdl1.2, libsdl-ttf2.0, libsdl-gles1.2-1, libgles1-sgx-img
+Installed-Size: 16000
+Maintainer: Janne Kulmala <janne.t.kulmala@iki.fi>
+Description: Can you handle the difficulties of turning?
+    Your job is to carve a given shape out of wood with a chisel. The better 
+    you match the shape and more accure job you do, the better score you 
+    will get. With earned score you can buy new faster and stronger chisels. 
+    Watch out for going too fast, as you might overheat your chisel or break 
+    the wood!

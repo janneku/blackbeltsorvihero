@@ -1,0 +1,23 @@
+OBJ += main.o gl.o sound.o common.o chisel.o wood.o shop.o utils.o \
+	menus.o http.o sha1.o
+
+NAME = BlackBeltSorviHero
+LINUX_BINARY = $(NAME).bin
+WIN32_BINARY = $(NAME).exe
+all: $(BINARY)
+
+$(BINARY):	version.o
+	./create-pack.py
+	$(CXX) $(OBJ) version.o -o $(BINARY) $(LDFLAGS)
+
+version.cc: $(OBJ)
+	sed -e "s|{VERSION}|$(VERSION)|" <version.cc.in >$@
+
+release:	$(BINARY)
+	rm -f "$(NAME)-$(shell date -I).zip"
+	rm -rf $(NAME)
+	mkdir $(NAME)
+	cp -r $(WIN32_BINARY) $(LINUX_BINARY) \
+		$(NAME)-linux-64bit INTRO.txt $(NAME).dat *.dll libraries/ \
+		$(NAME)/
+	zip -r "$(NAME)-$(shell date -I).zip" $(NAME)/

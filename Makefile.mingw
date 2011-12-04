@@ -1,0 +1,12 @@
+#
+# Makefile for Windows on Fedora (see README)
+#
+CXX = i686-pc-mingw32-g++
+BINARY = $(NAME).exe
+VERSION = $(shell git describe --always --dirty) $(shell date -I)
+CXXFLAGS = -O2 -Wextra -Wall `/usr/i686-pc-mingw32/sys-root/mingw/bin/sdl-config --cflags` \
+	-Wno-variadic-macros -ffast-math -ansi -pedantic
+LDFLAGS = -lopengl32 -lglu32 -lglew32 `/usr/i686-pc-mingw32/sys-root/mingw/bin/sdl-config --libs` \
+	-lSDL_ttf -lvorbisfile -lpng14 -lwsock32 -g
+
+include Makefile.common
