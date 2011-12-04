@@ -68,7 +68,7 @@ to 'BlackBeltSorviHero/submit.php'. The game fetches the highscore list by
 fetching the text file with a HTTP GET. The host name of the highscore 
 server is defined by HIGHSCORE_SERVER in 'menus.cc'.
 
-The validity of the highscore submissions is verified by a signature. 
+The validity of the highscore submissions is verified with a signature. 
 The signature is sent in the POST request and includes the player's 
 name, the score and a secret key. The server checks that it can produce 
 the same signature as the game binary, and thus the game and the server 
@@ -90,8 +90,8 @@ GLEW can be installed as follows:
   2. Compile with:
      $ make SYSTEM=mingw CC=i686-pc-mingw32-gcc LD=i686-pc-mingw32-gcc
   3. Install by executing as root:
-     $ cp lib/libglew32.a /usr/i686-pc-mingw32/lib/
-     $ cp include/GL/*.h /usr/i686-pc-mingw32/include/GL/
+     $ cp lib/libglew32.a /usr/i686-pc-mingw32/sys-root/mingw/lib/
+     $ cp include/GL/*.h /usr/i686-pc-mingw32/sys-root/mingw/include/GL/
 
 SDL_ttf can be installed as follows:
   1. Mingw "freetype-config" is broken and can be fixed by executing as root:
@@ -129,7 +129,7 @@ To compile, execute the following inside Scratchbox:
   $ make -f Makefile.n900
 
 Installable Debian package can be created with:
-  $ make -f Makefile.n900 release
+  $ make -f Makefile.n900 package
 
 
 END
