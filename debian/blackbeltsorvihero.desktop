@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=BlackBeltSorviHero
+Icon=blackbeltsorvihero
+Exec=/opt/BlackBeltSorviHero/blackbeltsorvihero
+X-Osso-Type=application/x-executable
+Terminal=false
+Categories=Game;
+
