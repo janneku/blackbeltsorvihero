@@ -1,8 +1,7 @@
 source: blackbeltsorvihero
 Section: user/games
 Priority: optional
-Build-Depends: debhelper (>= 5.0.42), libvorbis-dev, libsdl1.2-dev, libsdl-ttf2.0-dev, libpng12-dev,
- libgles1-sgx-img-dev [arm armel]
+Build-Depends: debhelper (>= 5.0.42), libvorbis-dev, libsdl1.2-dev, libsdl-ttf2.0-dev, libpng12-dev
 Maintainer: Aapo Rantalainen <aapo.rantalainen@gmail.com>
 Standards-Version: 3.8.1
 Homepage: http://japeq.iki.fi/BlackBeltSorviHero/

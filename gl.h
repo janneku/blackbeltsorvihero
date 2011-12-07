@@ -19,7 +19,6 @@
 
 #if defined(CONFIG_SDL_GLES)
 #if defined(CONFIG_N950)
-	#include <GLES/gl.h>
 #else
 	#include <SDL_gles.h>
 	#define SDL_GL_SwapBuffers SDL_GLES_SwapBuffers
