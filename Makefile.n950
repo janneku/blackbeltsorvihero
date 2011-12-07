@@ -1,0 +1,25 @@
+#
+# Makefile for Nokia N9(50)
+#
+CXX = g++
+BINARY = $(NAME)-n950
+VERSION = $(shell date -I)
+PACKAGEVERSION = 1.0.$(shell date +%Y%m%d)
+CXXFLAGS = -O2 -Wextra -Wall `sdl-config --cflags` -ffast-math -ansi -pedantic \
+	-Wno-variadic-macros -DCONFIG_GLES -DCONFIG_SDL_GLES -DCONFIG_N950
+LDFLAGS = -lEGL `sdl-config --libs` -lSDL_ttf -lvorbisfile \
+	-lpng -lGLES_CM -g
+OBJ += gles_compat.o
+
+include Makefile.common
+
+package: $(BINARY)
+	rm -rf dpkg
+	mkdir -p dpkg/usr/share/applications dpkg/opt/$(NAME) \
+		dpkg/usr/share/icons/hicolor/64x64/apps/ dpkg/DEBIAN
+	sed "s/{VERSION}/$(PACKAGEVERSION)/" \
+		<control.in >dpkg/DEBIAN/control
+	cp $(NAME).png dpkg/usr/share/icons/hicolor/64x64/apps/
+	cp *.desktop dpkg/usr/share/applications/
+	cp $(BINARY) Vera.ttf $(NAME).dat dpkg/opt/$(NAME)/
+	fakeroot dpkg-deb -b dpkg $(NAME)-n950-$(VERSION).deb

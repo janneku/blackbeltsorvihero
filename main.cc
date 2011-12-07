@@ -45,6 +45,8 @@ const int FONT_SIZE = 12;
 
 #if defined(CONFIG_N900)
 #define DATA_PATH	"/opt/" DIR_NAME "/"
+#elif defined(CONFIG_N950)
+#define DATA_PATH	"/opt/" DIR_NAME "/"
 #elif defined(_WIN32)
 #define DATA_PATH	".\\"
 #else
@@ -981,11 +983,40 @@ void init()
 			+ SDL_GetError());
 	}
 #if defined(CONFIG_SDL_GLES)
+#if defined(CONFIG_N950)
+   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
+
+    /* Enable Texture Mapping ( NEW ) */
+    glEnable( GL_TEXTURE_2D );
+
+    /* Enable smooth shading */
+    glShadeModel( GL_SMOOTH );
+
+    /* Set the background black */
+    glClearColor( 0.0f, 0.0f, 0.0f, 0.5f );
+
+    /* Depth buffer setup */
+    glClearDepthf( 1.0f );
+
+    /* Enables Depth Testing */
+    glEnable( GL_DEPTH_TEST );
+
+    /* The Type Of Depth Test To Do */
+    glDepthFunc( GL_LEQUAL );
+
+    /* Really Nice Perspective Calculations */
+    glHint( GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST );
+
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+#else
+
 	if (SDL_GLES_Init(SDL_GLES_VERSION_1_1)) {
 		throw std::runtime_error(
 			std::string("Unable to initialize GLES: ")
 			+ SDL_GetError());
 	}
+#endif /* CONFIG_N950 */
 #endif
 
 	open_window();
