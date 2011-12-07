@@ -1,7 +1,7 @@
 #
 # Makefile for Nokia N900
 #
-CXX = arm-linux-gnueabi-g++
+CXX = g++
 BINARY = $(NAME)-n900
 VERSION = $(shell date -I)
 PACKAGEVERSION = 1.0.$(shell date +%Y%m%d)
