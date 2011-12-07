@@ -1,0 +1,101 @@
+source: blackbeltsorvihero
+Section: user/games
+Priority: optional
+Build-Depends: debhelper (>= 5.0.42), libvorbis-dev, libsdl1.2-dev, libsdl-ttf2.0-dev, libpng12-dev,
+ libgles1-sgx-img-dev [arm armel]
+Maintainer: Aapo Rantalainen <aapo.rantalainen@gmail.com>
+Standards-Version: 3.8.1
+Homepage: http://japeq.iki.fi/BlackBeltSorviHero/
+
+
+
+Package: blackbeltsorvihero
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Can you handle the difficulties of turning?
+    Your job is to carve a given shape out of wood with a chisel. The better 
+    you match the shape and more accure job you do, the better score you 
+    will get. With earned score you can buy new faster and stronger chisels. 
+    Watch out for going too fast, as you might overheat your chisel or break 
+    the wood! By: Janne Kulmala
+    Only ARM-version.
+XSBC-Bugtracker: http://japeq.iki.fi/BlackBeltSorviHero/
+XB-Maemo-Icon-26:
+ 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
