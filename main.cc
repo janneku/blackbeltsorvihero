@@ -982,8 +982,14 @@ void init()
 			std::string("Unable to initialize SDL: ")
 			+ SDL_GetError());
 	}
+
 #if defined(CONFIG_SDL_GLES)
-#if defined(CONFIG_N950)
+	if (SDL_GLES_Init(SDL_GLES_VERSION_1_1)) {
+		throw std::runtime_error(
+			std::string("Unable to initialize GLES: ")
+			+ SDL_GetError());
+	}
+#elif defined(CONFIG_N950)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 1);
 
 	/* Enable smooth shading */
@@ -1000,14 +1006,6 @@ void init()
 
 	/* Really Nice Perspective Calculations */
 	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-#else
-
-	if (SDL_GLES_Init(SDL_GLES_VERSION_1_1)) {
-		throw std::runtime_error(
-			std::string("Unable to initialize GLES: ")
-			+ SDL_GetError());
-	}
-#endif /* CONFIG_N950 */
 #endif
 
 	open_window();

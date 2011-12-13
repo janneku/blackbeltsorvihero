@@ -18,13 +18,13 @@
 #endif
 
 #if defined(CONFIG_SDL_GLES)
-#if defined(CONFIG_N950)
-#else
 	#include <SDL_gles.h>
 	#define SDL_GL_SwapBuffers SDL_GLES_SwapBuffers
-#endif /* CONFIG_N950 */
 	#undef SDL_OPENGL
 	#define SDL_OPENGL 0
+#elif defined(CONFIG_N950)
+	#undef SDL_OPENGL
+	#define SDL_OPENGL SDL_OPENGLES
 #endif
 
 #include <SDL_ttf.h>

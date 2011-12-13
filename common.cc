@@ -147,13 +147,6 @@ void open_window()
 	}
 
 #if defined(CONFIG_SDL_GLES)
-#if defined(CONFIG_N950)
-	SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 1);
-
-	screen = SDL_SetVideoMode(0, 0, 0, SDL_OPENGLES | SDL_FULLSCREEN);
-	assert(screen);
-
-#else
 	static SDL_GLES_Context *context = NULL;
 	if (context == NULL) {
 		SDL_GLES_SetAttribute(SDL_GLES_DEPTH_SIZE, 16);
@@ -165,7 +158,6 @@ void open_window()
 	SDL_ShowCursor(SDL_DISABLE);
 
 	SDL_GLES_MakeCurrent(context);
-#endif /* CONFIG_N950 */
 #endif
 
 	scr_width = screen->w;
