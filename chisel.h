@@ -9,7 +9,7 @@ enum {
 	HANDLE_PRO,
 	HANDLE_ULTIMATE,
 	HANDLE_SCIFI,
-	HANDLE_LIGHTSABER,
+	HANDLE_LUXSABER,
 	HANDLE_HAND,
 	HANDLE_CHAINSAW,
 	MAX_HANDLES
@@ -22,7 +22,7 @@ enum {
 	BLADE_WIDE,
 	BLADE_SHARP,
 	BLADE_SAND,
-	BLADE_LIGHTSABER,
+	BLADE_LUXSABER,
 	BLADE_CHAINSAW,
 	NUM_BLADES
 };
@@ -69,8 +69,8 @@ extern Animator<float> blade_raise;
 extern Text chisel_name;
 extern bool cutting;
 extern Sound cutting_sound;
-extern Sound lightsaber_hit;
-extern Sound lightsaber_always;
+extern Sound luxsaber_hit;
+extern Sound luxsaber_always;
 extern Sound sanding;
 
 extern const Blade blades[];

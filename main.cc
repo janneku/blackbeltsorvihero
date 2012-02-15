@@ -153,8 +153,8 @@ void draw_ui()
 		handles[HANDLE_ULTIMATE].load("ultimate_icon.png");
 		handles[HANDLE_SCIFI].load("scifi_icon.png");
 		handles[HANDLE_HAND].load("hand_icon.png");
-		handles[HANDLE_LIGHTSABER].load("lightsaber_icon.png");
-		handles[HANDLE_CHAINSAW].load("lightsaber_icon.png");
+		handles[HANDLE_LUXSABER].load("luxsaber_icon.png");
+		handles[HANDLE_CHAINSAW].load("luxsaber_icon.png");
 		for (int i = 0; i < NUM_BLADES; ++i) {
 			numbers[i].init(font, strf("%d", i + 1));
 		}
@@ -255,10 +255,10 @@ void draw_ui()
 
 void draw_scene(bool bloom)
 {
-	static Model lightsaber;
+	static Model luxsaber;
 	static Once once;
 	if (once) {
-		lightsaber.load("lightsaber.obj");
+		luxsaber.load("luxsaber.obj");
 	}
 
 	glMatrixMode(GL_PROJECTION);
@@ -285,12 +285,12 @@ void draw_scene(bool bloom)
 	glGetFloatv(GL_MODELVIEW_MATRIX, modelMatrix);
 #endif
 
-	if (blade_num == BLADE_LIGHTSABER) {
+	if (blade_num == BLADE_LUXSABER) {
 		GLMatrixScope matrix;
 
 		glTranslatef(blade_x, blade_raise * -0.7 - BLADE_LEN,
 			blade_raise * 0.7 + chisel_fly * 10);
-		lightsaber.set_lights(bloom);
+		luxsaber.set_lights(bloom);
 	}
 	set_particles_light(bloom);
 
@@ -342,7 +342,7 @@ void draw_scene(bool bloom)
 
 		const Chisel *chisel = inventory[blade_num];
 
-		if (blade_num == BLADE_LIGHTSABER ||
+		if (blade_num == BLADE_LUXSABER ||
 		    blade_num == BLADE_CHAINSAW) {
 			glTranslatef(blade_x, -BLADE_LEN,
 				blade_raise + chisel_fly * 10);
@@ -1052,8 +1052,8 @@ void init()
 	support.set_alpha(0.6);
 	load_mpeg(&motor_sound, "motor.ogg");
 	load_mpeg(&cutting_sound, "cutting.ogg");
-	load_mpeg(&lightsaber_hit, "lightsaberhit.ogg");
-	load_mpeg(&lightsaber_always, "lightsaberalways.ogg");
+	load_mpeg(&luxsaber_hit, "luxsaberhit.ogg");
+	load_mpeg(&luxsaber_always, "luxsaberalways.ogg");
 	load_mpeg(&sanding, "sanding.ogg");
 }
 

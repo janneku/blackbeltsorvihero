@@ -42,7 +42,7 @@ const Hole sharp_blade[] = {
 	{-1, 0, 0, 0, 0}
 };
 
-const Hole lightsaber_blade[] = {
+const Hole luxsaber_blade[] = {
 	{HOLE_CURVE, 0, 30, 0, -0.2},
 
 	/* terminator */
@@ -92,8 +92,8 @@ Animator<float> blade_raise;
 Text chisel_name;
 bool cutting;
 Sound cutting_sound;
-Sound lightsaber_hit;
-Sound lightsaber_always;
+Sound luxsaber_hit;
+Sound luxsaber_always;
 Sound sanding;
 
 const Blade blades[] = {
@@ -103,7 +103,7 @@ const Blade blades[] = {
 	{flat_blade, 30, false},
 	{sharp_blade, 15, false},
 	{flat_blade, 30, true}, /* sand */
-	{lightsaber_blade, 30, false},
+	{luxsaber_blade, 30, false},
 	{flat_blade, 5, false}, /* chainsaw */
 };
 
@@ -175,12 +175,12 @@ const Chisel chisels[] = {
 	"edges. Faster and more resistant.",
 	HANDLE_HAND, 0.0001, 10, 3000, 3},
 
-	{BLADE_LIGHTSABER,
-	"Lightsaber",
+	{BLADE_LUXSABER,
+	"Luxsaber",
 	"The best friend of a Jedi!\n"
 	"Suitable for making large holes\n"
 	"fast! May the force be with you.",
-	HANDLE_LIGHTSABER, 0.0005, 30, 5000, 3},
+	HANDLE_LUXSABER, 0.0005, 30, 5000, 3},
 
 	{BLADE_CHAINSAW,
 	"Chainsaw",
@@ -225,8 +225,8 @@ void create_hole(float *profile, int len, const Hole *hole)
 void begin_cutting()
 {
 	cutting = true;
-	if (blade_num == BLADE_LIGHTSABER) {
-		play_sound(&lightsaber_hit, LOOP_INFINITE);
+	if (blade_num == BLADE_LUXSABER) {
+		play_sound(&luxsaber_hit, LOOP_INFINITE);
 	} else if (blade_num == BLADE_SAND) {
 		play_sound(&sanding, LOOP_INFINITE);
 	} else {
@@ -237,7 +237,7 @@ void begin_cutting()
 void end_cutting()
 {
 	cutting = false;
-	stop_sound(&lightsaber_hit);
+	stop_sound(&luxsaber_hit);
 	stop_sound(&cutting_sound);
 	stop_sound(&sanding);
 }
@@ -254,8 +254,8 @@ void switch_blade()
 	blade_raise.set_value(10);
 	chisel_name.init(font, chisel->name);
 
-	if (blade_num == BLADE_LIGHTSABER) {
-		play_sound(&lightsaber_always, LOOP_INFINITE);
+	if (blade_num == BLADE_LUXSABER) {
+		play_sound(&luxsaber_always, LOOP_INFINITE);
 	}
 }
 
@@ -290,7 +290,7 @@ void draw_chisel(const Chisel *chisel, const float *profile)
 		handles[HANDLE_PRO].load("pro.obj");
 		handles[HANDLE_ULTIMATE].load("ultimate.obj");
 		handles[HANDLE_SCIFI].load("scifi.obj");
-		handles[HANDLE_LIGHTSABER].load("lightsaber.obj");
+		handles[HANDLE_LUXSABER].load("luxsaber.obj");
 		handles[HANDLE_HAND].load("deadhand.obj");
 		handles[HANDLE_CHAINSAW].load("chainsaw.obj");
 	}
@@ -300,7 +300,7 @@ void draw_chisel(const Chisel *chisel, const float *profile)
 	float color[] = {0.4, 0.4, 0.4, 1};
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, color);
 
-	if (chisel->handle != HANDLE_LIGHTSABER &&
+	if (chisel->handle != HANDLE_LUXSABER &&
 	    chisel->handle != HANDLE_HAND) {
 		GLState state;
 		state.enable(GL_LIGHTING);

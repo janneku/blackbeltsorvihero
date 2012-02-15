@@ -380,7 +380,7 @@ const Level levels[] = {
 	"look the same. All you can hear anymore is the humming of\n"
 	"the motor.\n\n"
 	"SORVIN ÄÄREEN! ASENTO! LEPO!",
-	"lightsaberpop.ogg",
+	"luxsaberpop.ogg",
 	120, 5000},
 
 	{level_5,
@@ -395,7 +395,7 @@ const Level levels[] = {
 	"Think fast and you will gain a place in the hall\n"
 	"of fame and earn the respect of others!\n\n"
 	"awwyeah!",
-	"lightsaberpop.ogg",
+	"luxsaberpop.ogg",
 	40, 1000},
 
 	/* terminator */
@@ -525,7 +525,7 @@ void cut(float dt)
 				add_particle(p);
 			}
 			if ((stress[blade_num] > chisel->max_stress - 1 ||
-			     blade_num == BLADE_LIGHTSABER)
+			     blade_num == BLADE_LUXSABER)
 			    && randf(0, 1 / dt) < 2 - (chisel->max_stress -
 					stress[blade_num])) {
 				Particle p;

@@ -261,7 +261,7 @@ void shop_event(const SDL_Event *e)
 				const Chisel *chisel = get_selected(p);
 				if (chisel == NULL)
 					break;
-				if (chisel->blade == BLADE_LIGHTSABER) {
+				if (chisel->blade == BLADE_LUXSABER) {
 					play_sound(&awwyeah);
 				} else {
 					play_sound(&buy_sound);
