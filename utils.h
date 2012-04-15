@@ -252,8 +252,8 @@ void ins(std::multimap<Key, Value> &map, const Key &key, const Value &value)
 template<class Key, class Value>
 void del(std::multimap<Key, Value> &map, const Key &key, const Value &value)
 {
-	typename std::multimap<Key, Value>::iterator i = map.find(key);
-	while (i != map.end()) {
+	typename std::multimap<Key, Value>::iterator i = map.lower_bound(key);
+	while (i != map.end() && i->first == key) {
 		if (i->second == value) {
 			map.erase(i);
 			return;
